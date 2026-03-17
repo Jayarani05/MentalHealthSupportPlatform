@@ -1,5 +1,6 @@
 package com.example.MentalHealthSupportPlatform.controllers;
 
+import com.example.MentalHealthSupportPlatform.dto.CounselorRegisterDTO;
 import com.example.MentalHealthSupportPlatform.dto.UserRegisterDTO;
 import com.example.MentalHealthSupportPlatform.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,12 @@ public class AuthController {
         public String registerUser(@RequestBody UserRegisterDTO dto) {
             authService.registerUser(dto);
             return "User registered successfully";
+        }
+
+
+        @PostMapping("/register/counselor")
+        public String registerCounselor(@RequestBody CounselorRegisterDTO dto) {
+            authService.registerCounselor(dto);
+            return "Counselor registered. Waiting for admin verification.";
         }
 }
