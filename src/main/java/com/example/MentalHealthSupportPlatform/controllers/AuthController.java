@@ -25,4 +25,10 @@ public class AuthController {
             authService.registerCounselor(dto);
             return "Counselor registered. Waiting for admin verification.";
         }
+
+        @PutMapping("/admin/verify/{id}")
+        public String verifyCounselor(@PathVariable Long id) {
+            authService.verifyCounselor(id);
+            return "Counselor verified successfully";
+        }
 }

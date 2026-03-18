@@ -63,4 +63,16 @@ public class AuthService {
         return counselorRepository.save(counselor);
     }
 
+    public Counselor verifyCounselor(Long counselorId) {
+
+        Counselor counselor = counselorRepository.findById(counselorId)
+                .orElseThrow(() -> new RuntimeException("Counselor not found"));
+
+        counselor.setVerified(true);
+
+        return counselorRepository.save(counselor);
+    }
+
+
+
     }
