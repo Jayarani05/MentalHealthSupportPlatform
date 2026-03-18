@@ -1,6 +1,8 @@
 package com.example.MentalHealthSupportPlatform.services;
 
+import com.example.MentalHealthSupportPlatform.config.JwtUtil;
 import com.example.MentalHealthSupportPlatform.dto.CounselorRegisterDTO;
+import com.example.MentalHealthSupportPlatform.dto.LoginDTO;
 import com.example.MentalHealthSupportPlatform.dto.UserRegisterDTO;
 import com.example.MentalHealthSupportPlatform.models.Counselor;
 import com.example.MentalHealthSupportPlatform.models.User;
@@ -73,6 +75,21 @@ public class AuthService {
         return counselorRepository.save(counselor);
     }
 
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    public String login(LoginDTO dto) {
+
+        User user = userRepository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return jwtUtil.generateToken(user.getEmail());
+    }
 
 
     }
