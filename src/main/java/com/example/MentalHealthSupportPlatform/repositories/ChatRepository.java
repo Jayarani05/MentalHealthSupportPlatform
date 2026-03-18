@@ -1,11 +1,11 @@
 package com.example.MentalHealthSupportPlatform.repositories;
 
-import com.example.MentalHealthSupportPlatform.models.ChatMessage;
+import com.example.MentalHealthSupportPlatform.models.ChatMessageEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ChatRepository extends JpaRepository<ChatMessage, Long> {
+public interface ChatRepository extends JpaRepository<ChatMessageEntity, Long> {
 
-    List<ChatMessage> findBySessionId(Long sessionId);
+    List<ChatMessageEntity> findBySessionId(Long sessionId);
 }

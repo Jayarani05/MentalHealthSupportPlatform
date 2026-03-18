@@ -1,20 +1,23 @@
 package com.example.MentalHealthSupportPlatform.controllers;
 
-
 import com.example.MentalHealthSupportPlatform.dto.ChatMessage;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import com.example.MentalHealthSupportPlatform.services.ChatService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.*;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class ChatController {
 
-    @MessageMapping("/sendMessage")
+    @Autowired
+    private ChatService chatService;
 
+    @MessageMapping("/sendMessage")
     @SendTo("/topic/messages")
     public ChatMessage sendMessage(ChatMessage message) {
 
-        System.out.println("Message from: " + message.getSender());
+        chatService.saveMessage(message);
 
         return message;
     }
