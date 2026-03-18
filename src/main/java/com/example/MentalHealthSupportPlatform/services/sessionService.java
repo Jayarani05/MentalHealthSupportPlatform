@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class sessionService {
@@ -47,5 +48,23 @@ public class sessionService {
         session.setStatus("BOOKED");
 
         return sessionRepository.save(session);
+    }
+
+    public List<session> getSessionsByUser(Long userId) {
+
+        if (!userRepository.existsById(userId)) {
+            throw new RuntimeException("User not found");
+        }
+
+        return sessionRepository.findByUserId(userId);
+    }
+
+    public List<session> getSessionsByCounselor(Long counselorId) {
+
+        if (!counselorRepository.existsById(counselorId)) {
+            throw new RuntimeException("Counselor not found");
+        }
+
+        return sessionRepository.findByCounselorId(counselorId);
     }
 }
