@@ -1,6 +1,7 @@
 package com.example.MentalHealthSupportPlatform.controllers;
 
 import com.example.MentalHealthSupportPlatform.dto.CounselorRegisterDTO;
+import com.example.MentalHealthSupportPlatform.dto.LoginDTO;
 import com.example.MentalHealthSupportPlatform.dto.UserRegisterDTO;
 import com.example.MentalHealthSupportPlatform.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,9 @@ public class AuthController {
             authService.verifyCounselor(id);
             return "Counselor verified successfully";
         }
+
+         @PostMapping("/login")
+         public String login(@RequestBody LoginDTO dto) {
+            return authService.login(dto);
+         }
 }
