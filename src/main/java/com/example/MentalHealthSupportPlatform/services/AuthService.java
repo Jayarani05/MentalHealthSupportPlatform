@@ -1,5 +1,6 @@
 package com.example.MentalHealthSupportPlatform.services;
 
+import com.example.MentalHealthSupportPlatform.config.JwtFilter;
 import com.example.MentalHealthSupportPlatform.config.JwtUtil;
 import com.example.MentalHealthSupportPlatform.dto.CounselorRegisterDTO;
 import com.example.MentalHealthSupportPlatform.dto.LoginDTO;
@@ -90,6 +91,8 @@ public class AuthService {
 
         return jwtUtil.generateToken(user.getEmail());
     }
+
+
 
 
     }

@@ -11,30 +11,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-        @Autowired
-        private AuthService authService;
+    @Autowired
+    private AuthService authService;
 
-        @PostMapping("/register/user")
-        public String registerUser(@RequestBody UserRegisterDTO dto) {
-            authService.registerUser(dto);
-            return "User registered successfully";
-        }
+    @PostMapping("/register/user")
+    public String registerUser(@RequestBody UserRegisterDTO dto) {
+        authService.registerUser(dto);
+        return "User registered successfully";
+    }
 
 
-        @PostMapping("/register/counselor")
-        public String registerCounselor(@RequestBody CounselorRegisterDTO dto) {
-            authService.registerCounselor(dto);
-            return "Counselor registered. Waiting for admin verification.";
-        }
+    @PostMapping("/register/counselor")
+    public String registerCounselor(@RequestBody CounselorRegisterDTO dto) {
+        authService.registerCounselor(dto);
+        return "Counselor registered. Waiting for admin verification.";
+    }
 
-        @PutMapping("/admin/verify/{id}")
-        public String verifyCounselor(@PathVariable Long id) {
-            authService.verifyCounselor(id);
-            return "Counselor verified successfully";
-        }
+    @PutMapping("/admin/verify/{id}")
+    public String verifyCounselor(@PathVariable Long id) {
+        authService.verifyCounselor(id);
+        return "Counselor verified successfully";
+    }
 
-         @PostMapping("/login")
-         public String login(@RequestBody LoginDTO dto) {
-            return authService.login(dto);
-         }
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDTO dto) {
+        return authService.login(dto);
+    }
+
 }
+
